@@ -88,13 +88,25 @@ The analysis of the local election demonstrates:
 
 ## Suggestions to Modify Code for Other Elections
 There are a couple of suggestions that I might make for adapting this code for other elections:
-  - Creating a way to check for duplicate votes being case by the same voter identification code in multiple counties (i.e., find a way to ensure no double-voting and the integrity of a given election). 
+  - Creating a way to check for duplicate votes being case by the same voter identification code in multiple counties.
   - Creating a method for sorting results and tracking margin of victory. 
 
 ### Checking for Duplicates
-
-
-### Sorting Results 
+  Were this code to be adopted in other elections, I would suggest writing a section of code that returned any duplicates for voter identification numbers, which might indicate that a vote was counted twice accidentally. Employing this code would help to ensure that the election results could be confirmed relatively and reported as final relatively quickly. In order to code this, we might build an if statement at the end of our code that is similar to the `if` statements embedded in the `for` statement referenced above for counting candidate and county vote totals: 
+  
+  `python    for row in Read:
+        voter_id = row[0]
+        if voter_id not in voter_id_list: 
+            voter_id_list.append(voter_id)
+            voter_id_dict[voter_id] = 0
+        voter_id_dict[voter_id] +=1
+    if voter_id_dict[voter_id] > 1:
+        dup_output[voter_id]
+    print(dup_output)`
+    
+    
+  The code above, when applied to the election results for this project, returns to the terminal the following output:  
+###Sorting Results 
   
   Given that there are only three candidates in this election (and that this election was not particularly close) it's relaatively easy for an election worker to understand the results. In an election with many candidates (or maybe even a different election system like a "ranked choice" system) or one that is much closer in terms of the margin of victory, it might be more difficult for an election worker to easily determine who won. For example, the results printed in the code I provided for this project are only accurate to one decimal place. In a very close race, the margin of victory may be such that one decimal place results in an apparent tie between one or more candidates. In such a case, we would want to change our code to allow for more decimal places, like so: 
   ```     votes = candidate_votes.get(candidate_name)
@@ -102,6 +114,7 @@ There are a couple of suggestions that I might make for adapting this code for o
         candidate_results = (
             f"{candidate_name}: {vote_percentage:.4f}% ({votes:,})\n")
   ```
-  By changing `:.1f}%` to `:.4f}%` we are able to generate results in percentages with more signifcant digits, allowing for a closer comparison of percentages in a very close race. Likewise,  WRITE CODE TO SUBTRACT VOTE TOTALS -- WILL NEED TO USE DICTIONARY Values to subtract the remaining value totals from the current total
-           
+  By changing `:.1f}%` to `:.4f}%` we are able to generate results in percentages with more signifcant digits, allowing for a closer comparison of percentages in a very close race. 
+  Similarly, there are often vote margin threshholds in elections that require the winning candidate to win by a certain number of votes. For example, in this election the winner might have been required to win by at least 1,000 votes without activating a manual recount. Capturing the difference in vote totals would be a useful metric to assist election officials in deciding how to proceed. In the current project, the vote totals are sufficiently disparate and the candidates sufficiently few that an election official would not necessarily need this additional code, but it is not difficult to imagine a hotly contested election in which this data could come i handy. 
+  In order to code these changes, I would suggest adding the following code XXXXGIVE LOCATION>>> CAN YOU DO IT?>>>           
       
