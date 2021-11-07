@@ -34,8 +34,10 @@ The analysis of the local election demonstrates:
       - Jefferson County: 10.5% (38855 votes)
       - Denver County: 82.8% (306055 votes) 
       - Arapahoe County: 6.7% (24801 votes)
-        Tabulating the total votes for each county required an `if`  statement under the controlling `for` statement that ran through each row in the data source after defining `county_name` as the second element in each row of the data source: 
+        Tabulating the total votes for each county required an `if`  statement under the controlling `for` statement that ran through each row in the data source after defining `county_name` as the second element in each row of the data source. This `if` statement both added the county names to the list `county_list` while also creating three `key:value` pairs in the dicionary `county_votes{}` consisting of the name of each county and the number of times each of these counties appears in the data source: 
+        
      ```python
+      county_votes = {}
       county_name = row[1]
       ...
       if county_name not in county_list:        
@@ -49,21 +51,39 @@ The analysis of the local election demonstrates:
       - Charles Casper Stockham 
       - Diana DeGette
       - Raymon Anthony Doane
-       Calculating the total number of votes for each candidate required a similar `if` statement after defining `candidate_name` as the third element in each row of the data source: 
+      
+       Calculating the total number of votes for each candidate required a similar `if` statement as the votes per county, after defining `candidate_name` as the third element in each row of the data source. As above for the county data, the `if` statement below both creates a list of candidate names and also establishes three `key:value` pairs in the dictionary `candidate_options` for the name of each candidate and the total number of votes they recieved:
+       
       ```python
       candidate_name = row[2]
+      candidate_votes = {}
       ...
       if candidate_name not in candidate_options:        
           candidate_options.append(candidate_name)
           candidate_votes[candidate_name] = 0
-      candidate_votes[candidate_name] += 1
-      ``` 
+      candidate_votes[candidate_name] += 1``` 
+      
+     
   - The candidate results were: 
       - Charles Casper Stockham received 23.0% of the vote with 85,213 total votes.
       - Diana DeGette received 73.8% of the vote with 272,892 total votes. 
       - Raymon Anthony Doane received 3.1% of the vote with 11,606 total votes. 
+      
+        Once vote totals were computed, the percentage of each vote cast for each candidate was found by dividing each candidates's vote count by the total number of votes cast. At this point in my code, each candidate's vote total had been written to the `key:value` pairs in the `candidate_options{}` dictionary, and the equation for percentage of the total vote looks like: 
        
+       ```python
+       c_votes = county_votes.get(county_name)
+       
+       c_vote_percentage = (float(c_votes)/(float(total_votes)))*100
+       
+       county_results = (
+            f'{county_name}: {c_vote_percentage:.1f}% ({c_votes} votes).\n')
+       
+  (In the above snippet of code, `county_results` is being defined as a string literal so that it could be easily printed in the terminal and outputted to our results text file.) 
+  
   - The winner of the election was:
       - Diana DeGette, who received 73.85 of the vote with 272,892 total votes. 
+        
+        
 
 ## Challenge Summary
