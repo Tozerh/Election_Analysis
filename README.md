@@ -16,7 +16,7 @@ In order to do so, I followed these general steps:
 - Data Source: election_results.csv
 - Software: Python 3.6.1, Visual Studio Code, 1.38.1
 
-## Election Results Summary
+## Election Results Summary & Analysis
 The analysis of the local election demonstrates: 
 
   - There were 369,711 votes cast in this election. 
@@ -86,4 +86,22 @@ The analysis of the local election demonstrates:
         
         
 
-## Challenge Summary
+## Suggestions to Modify Code for Other Elections
+There are a couple of suggestions that I might make for adapting this code for other elections:
+  - Creating a way to check for duplicate votes being case by the same voter identification code in multiple counties (i.e., find a way to ensure no double-voting and the integrity of a given election). 
+  - Creating a method for sorting results and tracking margin of victory. 
+
+### Checking for Duplicates
+
+
+### Sorting Results 
+  
+  Given that there are only three candidates in this election (and that this election was not particularly close) it's relaatively easy for an election worker to understand the results. In an election with many candidates (or maybe even a different election system like a "ranked choice" system) or one that is much closer in terms of the margin of victory, it might be more difficult for an election worker to easily determine who won. For example, the results printed in the code I provided for this project are only accurate to one decimal place. In a very close race, the margin of victory may be such that one decimal place results in an apparent tie between one or more candidates. In such a case, we would want to change our code to allow for more decimal places, like so: 
+  ```     votes = candidate_votes.get(candidate_name)
+        vote_percentage = float(votes) / float(total_votes) * 100
+        candidate_results = (
+            f"{candidate_name}: {vote_percentage:.4f}% ({votes:,})\n")
+  ```
+  By changing `:.1f}%` to `:.4f}%` we are able to generate results in percentages with more signifcant digits, allowing for a closer comparison of percentages in a very close race. Likewise,  WRITE CODE TO SUBTRACT VOTE TOTALS -- WILL NEED TO USE DICTIONARY Values to subtract the remaining value totals from the current total
+           
+      
