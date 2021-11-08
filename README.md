@@ -85,7 +85,7 @@ The analysis of the local election demonstrates:
   (In the above snippet of code, `county_results` is being defined as a string literal so that it can be easily printed in the terminal and outputted to our results text file.) 
   
   - The winner of the election was:
-      - Diana DeGette, who received 73.85 of the vote with 272,892 total votes. 
+      - Diana DeGette, who received 73.85% of the vote with 272,892 total votes. 
         
         
 
