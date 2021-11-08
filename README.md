@@ -32,9 +32,9 @@ The analysis of the local election demonstrates:
     
   
   - There were three counties involved in the election, and here is the vote breakdown by county:
-      - Jefferson County: 10.5% (38855 votes)
-      - Denver County: 82.8% (306055 votes) 
-      - Arapahoe County: 6.7% (24801 votes)
+      - Jefferson County: 10.5% (38,855 votes)
+      - Denver County: 82.8% (306,055 votes) 
+      - Arapahoe County: 6.7% (24,801 votes)
       
         Tabulating the total votes for each county required an `if`  statement under the controlling `for` statement that ran through each row in the data source after defining `county_name` as the second element in each row of the data source. This `if` statement both added the county names to the list `county_list` while also creating three `key:value` pairs in the dicionary `county_votes{}` consisting of the name of each county and the number of times each of these counties appears in the data source: 
         
